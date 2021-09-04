@@ -4,7 +4,7 @@
   "description": "first nodejs project",
   "main": "src/index.js",
   "scripts": {
-    "beautiful": "prettier --single-quote --trailing-comma all --tab-width 4 --write \"src/**/*.{js,json,scss}\"",
+    "beautiful": "lint-staged",
     "start": "nodemon --inspect src/index.js",
     "watch": "node-sass -w src/resources/scss/ --output src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,7 @@
   "keywords": [
     "tienhuy",
     "f8",
-    "blog",
+    "blog", 
     "nodejs"
   ],
   "author": "TienHuy",
