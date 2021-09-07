@@ -1,0 +1,19 @@
+<div class="mt-4">
+    <h3>Sửa khóa học</h3>
+
+    <form method="POST" action="/courses/restore/{{course._id}}?_method=PUT">
+        <div class="form-group">
+            <label for="name">Tên khóa học</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{course.name}}">
+        </div>
+        <div class="form-group">
+            <label for="description">Mô tả</label>
+            <textarea class="form-control" id="description" name="description">{{course.description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="video">Video ID</label>
+            <input type="text" class="form-control" id="video" name="video" value="{{course.video}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Sửa</button>
+</form>
+</div>
