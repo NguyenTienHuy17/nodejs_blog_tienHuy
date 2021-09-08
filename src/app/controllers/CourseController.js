@@ -52,10 +52,35 @@ class CourseController {
     }
 
     //[Put] /courses:/id
-    restore(req, res, next){
+    fix(req, res, next){
         Course.updateOne({_id: req.params.id}, req.body)
             .then(() => res.redirect('/courses/all'))
             .catch(next)
+    }
+
+    //[Delete] /courses/:id
+    delete(req, res, next){
+        Course.delete({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next)
+    }
+
+    //[Patch] /courses/:id/restore
+    restore(req, res, next){
+        // Course.restore({ _id: req.params.id })
+        //     .then(() => res.send('thành công'))
+        //     .catch(next)
+        console.log('restore')
+    }
+
+    recycleBin(req, res, next){
+        Course.findDeleted({})
+        .then(courses => {
+            res.render('courses/recycleBin', {
+                courses: multipleMongooseToObject(courses)
+            });
+        })
+        .catch(next);
     }
 }
 
