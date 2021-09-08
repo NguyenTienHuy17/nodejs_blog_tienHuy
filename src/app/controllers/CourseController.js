@@ -25,7 +25,7 @@ class CourseController {
         formData.image = `https://img.youtube.com/vi/${formData.video}/sddefault.jpg`;
         const course = new Course(req.body);
         course.save()
-            .then(() => res.redirect('/'))
+            .then(() => res.redirect('/courses/all'))
             .catch(next)
     }
 
@@ -65,14 +65,21 @@ class CourseController {
             .catch(next)
     }
 
-    //[Patch] /courses/:id/restore
-    restore(req, res, next){
-        // Course.restore({ _id: req.params.id })
-        //     .then(() => res.send('thành công'))
-        //     .catch(next)
-        console.log('restore')
+    //[Delete] /courses/:id/deletepermanently
+    deletepermanently(req, res, next){
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next)
     }
 
+    //[Patch] /courses/:id/restore
+    restore(req, res, next){
+        Course.restore({ _id: req.params.id })
+            .then(() => res.send('thành công'))
+            .catch(next)
+    }
+
+    //[Get] /courses/recycleBin
     recycleBin(req, res, next){
         Course.findDeleted({})
         .then(courses => {
